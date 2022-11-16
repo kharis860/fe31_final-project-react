@@ -1,0 +1,30 @@
+.global {
+  margin-left: 255px;
+}
+/* start nav */
+.nav {
+  display: flex;
+  background-color: #405262;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  height: 100px;
+  border: none;
+}
+.profil {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 20px;
+}
+.profil h5 {
+  color: white;
+}
+.profil img {
+  margin-left: 15px;
+  border-radius: 40px;
+}
+.profil:hover {
+  cursor: pointer;
+}
+/* end nav */
