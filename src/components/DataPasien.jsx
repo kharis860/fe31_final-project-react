@@ -1,7 +1,24 @@
 import Navbar from "./Navbar";
 import "../components/DataPasien.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "./Redux/action/dataAction";
+import { useEffect } from "react";
 
 function DataPasien() {
+  const tele = useNavigate();
+  function teleRiwayat() {
+    tele("/riwayat");
+  }
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(state.pasien);
+
+  state.pasien.map((item, index) => console.log(item));
+
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
   return (
     <>
       <Navbar />
@@ -61,23 +78,23 @@ function DataPasien() {
                     </tr>
                   </thead>
                   <tbody className="table-body">
-                    <tr id="row">
-                      <td scope="col">1</td>
-                      <td scope="col">203</td>
-                      <td scope="col">Joni</td>
-                      <td scope="col">Laki-laki</td>
-                      <td scope="col">31 Tahun</td>
-                      <td scope="col">21 Agustus 1990</td>
-                      <td scope="col">Semarang</td>
-                      <td scope="col">
-                        <form action="../Data Pasien/data.html">
-                          <button id="" className="btn btn-sm" role="button">
+                    {state.pasien.map((item, index) => (
+                      <tr id="row" key={index}>
+                        <td scope="col">{index + 1}</td>
+                        <td scope="col">{item.idPasien}</td>
+                        <td scope="col">{item.namaLengkap}</td>
+                        <td scope="col">{item.jenisKelamin}</td>
+                        <td scope="col">{item.umur}</td>
+                        <td scope="col">{item.tanggalLahir}</td>
+                        <td scope="col">{item.alamat}</td>
+                        <td scope="col">
+                          <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat()}>
                             <i className="material-icons">zoom_in</i>
                             Lihat
                           </button>
-                        </form>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

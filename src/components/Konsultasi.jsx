@@ -1,6 +1,25 @@
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "./Redux/action/dataAction";
+import { useEffect } from "react";
+import { isDocument } from "@testing-library/user-event/dist/utils";
 
 function Konsultasi() {
+  const tele = useNavigate();
+  function teleRekamMedis() {
+    tele("/rekam");
+    console.log("berhasil");
+  }
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(state.pasien);
+
+  state.pasien.map((item, index) => console.log(item));
+
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
   return (
     <div className="global">
       <Navbar />
@@ -55,24 +74,24 @@ function Konsultasi() {
                   </tr>
                 </thead>
                 <tbody className="table-body">
-                  <tr>
-                    <td scope="col">1</td>
-                    <td scope="col">209</td>
-                    <td scope="col">Rudi</td>
-                    <td scope="col">Laki-laki</td>
-                    <td scope="col">20</td>
-                    <td scope="col">20 Maret 2002</td>
-                    <td scope="col">
-                      <form action="index.html">
-                        <button id="submit${i}" onclick="kondisi(${i + 1})" className="btn btn-sm" role="button">
+                  {state.pasien.map((item, index) => (
+                    <tr key={index}>
+                      <td scope="col">{index + 1}</td>
+                      <td scope="col">{item.idPasien}</td>
+                      <td scope="col">{item.namaLengkap}</td>
+                      <td scope="col">{item.jenisKelamin}</td>
+                      <td scope="col">{item.umur}</td>
+                      <td scope="col">{item.tanggalLahir}</td>
+                      <td scope="col">
+                        <button id="submit${i}" onClick={() => teleRekamMedis()} className="btn btn-sm" role="button">
                           <i className="material-icons" style={{ font_size: "15px" }}>
                             edit
                           </i>
                           Edit
                         </button>
-                      </form>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
