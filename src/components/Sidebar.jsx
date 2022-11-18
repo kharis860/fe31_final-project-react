@@ -13,6 +13,9 @@ function Sidebar() {
     console.log("pindah konsultasi");
   };
   function teleDashboard() {
+    tele("/dashboard");
+  }
+  function teleLogin() {
     tele("/");
   }
 
@@ -30,7 +33,7 @@ function Sidebar() {
             <button onClick={() => teleKonsultasi()}>
               <i className="fas fa-stethoscope"></i> Konsultasi
             </button>
-            <button>
+            <button onClick={() => teleLogin()}>
               <i className="fas fa-sign-out-alt"></i> Keluar
             </button>
           </div>

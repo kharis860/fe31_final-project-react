@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function DataPasien() {
   const tele = useNavigate();
   function teleRiwayat() {
-    tele("/riwayat");
+    tele("/dashboard/riwayat")
   }
   const dispatch = useDispatch();
   const state = useSelector((state) => state);

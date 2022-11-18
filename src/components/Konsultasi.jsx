@@ -8,7 +8,7 @@ import { isDocument } from "@testing-library/user-event/dist/utils";
 function Konsultasi() {
   const tele = useNavigate();
   function teleRekamMedis() {
-    tele("/rekam");
+    tele("/dashboard/rekam");
     console.log("berhasil");
   }
   const dispatch = useDispatch();
