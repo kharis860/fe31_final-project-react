@@ -10,6 +10,7 @@ import RiwayatPenyakit from "./components/RiwayatPenyakit";
 import RekamMedis from "./components/RekamMedis";
 
 function App() {
+
   return (
     // <div>
     //   <Sidebar />
