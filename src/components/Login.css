@@ -1,10 +1,25 @@
+#login-bg {
+    background-color: #405262;
+    padding: 0;
+    margin-top: 0px;
+    height: 100vh;
+}
+
+#login {
+    padding-top: 20px;
+}
+
+section.login {
+    justify-content: space-between;
+}
+
 #login .container-fluid {
     font-family: "Poppins", sans-serif;
 }
 
 #login .login {
-    background-color: #405262;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: 8px -1px 10px 2px rgba(0, 0, 0, 0.54);
     width: auto;
     display: flex;
     margin: 50px;
