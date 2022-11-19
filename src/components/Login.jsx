@@ -18,15 +18,12 @@ function Login() {
 
         for (let i = 0; i < dataDokter.length; i++) {
             if (username === dataDokter[i].username && password === dataDokter[i].password) {
-                setIsLogin((isLogin) => !isLogin);
+                setIsLogin(true);
+                tele("/dashboard");
+                break;
             }
         }
-        if (isLogin == true) {
-            alert(isLogin);
-            tele("/dashboard");
-        } else {
-            alert("Masukkan username atau password yang benar");
-        }
+        alert("Masukkan username atau password yang benar");
     };
 
     useEffect(() => {
@@ -36,7 +33,7 @@ function Login() {
     }, []);
 
     useEffect(() => {
-        console.log(isLogin);
+        // setIsLogin(() => !isLogin);
     }, [isLogin]);
     // function teleDashboard() {
     //     tele("/dashboard");
