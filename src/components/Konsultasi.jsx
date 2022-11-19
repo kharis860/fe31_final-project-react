@@ -14,54 +14,56 @@ function Konsultasi() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
   console.log(state.pasien);
-    const [filteredList, setFilteredList] = useState(state.pasien);
-    // data tidak langsung masuk di bagian ini
-    // console.log(filteredList);
+  const [filteredList, setFilteredList] = useState(state.pasien);
+  // data tidak langsung masuk di bagian ini
+  // console.log(filteredList);
 
-    const handleSearch = (e) => {
-        const inputSearch = e.target.value;
-        console.log(inputSearch);
+  const handleSearch = (e) => {
+    const inputSearch = e.target.value;
+    console.log(inputSearch);
 
-        // setFilteredList(e.target.value);
-        let updatedList = [...state.pasien];
+    // setFilteredList(e.target.value);
+    let updatedList = [...state.pasien];
 
-        updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
-        setFilteredList(updatedList);
-        console.log(filteredList);
-    };
+    updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
+    setFilteredList(updatedList);
+    console.log(filteredList);
+  };
 
-    //   state.pasien.map((item, index) => console.log(item));
+  //   state.pasien.map((item, index) => console.log(item));
 
-    useEffect(() => {
-        dispatch(sendData());
-    }, []);
-    return (
-        <div className="global">
-            <Navbar />
-            {/*start tabel*/}
-            <div className="row mx-3">
-                <div className="container-sm">
-                    {/*BARIS*/}
-                    <div className="row">
-                        <div className="col-md">
-                            <h1 className="title">Konsultasi Hari Ini</h1>
-                        </div>
-                    </div>
-                    {/*END BARIS*/}
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
+  return (
+    <div className="global">
+      <Navbar />
+      {/*start tabel*/}
+      <div className="row mx-3">
+        <div className="container-sm">
+          {/*BARIS*/}
+          <div className="row">
+            <div className="col-md">
+              <h1 className="title">Konsultasi Hari Ini</h1>
+            </div>
+          </div>
 
-                    {/*BARIS*/}
-                    <div className="row">
-                        <div className="col-xl-6">
-                            <div className="input-group flex-nowrap">
-                                <input type="text" onChange={handleSearch} className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
-                                <span className="input-group-text" id="icon-search">
-                                    {" "}
-                                    <i className="material-icons">search</i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* END BARIS */}
+          {/*END BARIS*/}
+
+          {/*BARIS*/}
+          <div className="row">
+            <div className="col-xl-6">
+              <div className="input-group flex-nowrap">
+                <input type="text" onChange={handleSearch} className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
+                <span className="input-group-text" id="icon-search">
+                  {" "}
+                  <i className="material-icons">search</i>
+                </span>
+              </div>
+            </div>
+          </div>
+          {/* END BARIS */}
+
           {/*BARIS*/}
           <div className="row">
             <div className="col-md table-responsive-md">
@@ -111,8 +113,11 @@ function Konsultasi() {
                 </tbody>
               </table>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Konsultasi;
