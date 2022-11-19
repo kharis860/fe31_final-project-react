@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function RekamMedis() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.data);
   useEffect(() => {
     dispatch(sendData());
   }, []);

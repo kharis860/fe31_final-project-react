@@ -12,7 +12,7 @@ function Konsultasi() {
     console.log("berhasil");
   }
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.data);
   console.log(state.pasien);
 
   state.pasien.map((item, index) => console.log(item));
@@ -74,24 +74,26 @@ function Konsultasi() {
                   </tr>
                 </thead>
                 <tbody className="table-body">
-                  {state.pasien.map((item, index) => (
-                    <tr key={index}>
-                      <td scope="col">{index + 1}</td>
-                      <td scope="col">{item.idPasien}</td>
-                      <td scope="col">{item.namaLengkap}</td>
-                      <td scope="col">{item.jenisKelamin}</td>
-                      <td scope="col">{item.umur}</td>
-                      <td scope="col">{item.tanggalLahir}</td>
-                      <td scope="col">
-                        <button id="submit${i}" onClick={() => teleRekamMedis()} className="btn btn-sm" role="button">
-                          <i className="material-icons" style={{ font_size: "15px" }}>
-                            edit
-                          </i>
-                          Edit
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {state.pasien
+                    .filter((pasien) => pasien.konsultasi == false)
+                    .map((item, index) => (
+                      <tr key={index}>
+                        <td scope="col">{index + 1}</td>
+                        <td scope="col">{item.idPasien}</td>
+                        <td scope="col">{item.namaLengkap}</td>
+                        <td scope="col">{item.jenisKelamin}</td>
+                        <td scope="col">{item.umur}</td>
+                        <td scope="col">{item.tanggalLahir}</td>
+                        <td scope="col">
+                          <button id="submit${i}" onClick={() => teleRekamMedis()} className="btn btn-sm" role="button">
+                            <i className="material-icons" style={{ font_size: "15px" }}>
+                              edit
+                            </i>
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

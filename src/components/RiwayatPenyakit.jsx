@@ -7,7 +7,7 @@ import Accordion from "react-bootstrap/Accordion";
 
 function RiwayatPenyakit() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.data);
   console.log(state.pasien);
   // console.log(state.pasien[0]);
   state.pasien

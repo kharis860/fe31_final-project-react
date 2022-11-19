@@ -8,10 +8,12 @@ import { useEffect } from "react";
 function DataPasien() {
   const tele = useNavigate();
   function teleRiwayat() {
-    tele("/dashboard/riwayat")
+    tele("/dashboard/riwayat");
   }
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.data);
+  const stateId = useSelector((state) => state.id);
+  console.log(stateId.id);
   console.log(state.pasien);
 
   state.pasien.map((item, index) => console.log(item));
@@ -78,23 +80,25 @@ function DataPasien() {
                     </tr>
                   </thead>
                   <tbody className="table-body">
-                    {state.pasien.map((item, index) => (
-                      <tr id="row" key={index}>
-                        <td scope="col">{index + 1}</td>
-                        <td scope="col">{item.idPasien}</td>
-                        <td scope="col">{item.namaLengkap}</td>
-                        <td scope="col">{item.jenisKelamin}</td>
-                        <td scope="col">{item.umur}</td>
-                        <td scope="col">{item.tanggalLahir}</td>
-                        <td scope="col">{item.alamat}</td>
-                        <td scope="col">
-                          <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat()}>
-                            <i className="material-icons">zoom_in</i>
-                            Lihat
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {state.pasien
+                      .filter((pasien) => pasien.konsultasi == true)
+                      .map((item, index) => (
+                        <tr id="row" key={index}>
+                          <td scope="col">{index + 1}</td>
+                          <td scope="col">{item.idPasien}</td>
+                          <td scope="col">{item.namaLengkap}</td>
+                          <td scope="col">{item.jenisKelamin}</td>
+                          <td scope="col">{item.umur}</td>
+                          <td scope="col">{item.tanggalLahir}</td>
+                          <td scope="col">{item.alamat}</td>
+                          <td scope="col">
+                            <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat()}>
+                              <i className="material-icons">zoom_in</i>
+                              Lihat
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
