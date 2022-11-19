@@ -3,8 +3,16 @@ import { Accordion } from "react-bootstrap";
 import "../components/RekamMedis.css";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "./Redux/action/dataAction";
+import { useEffect } from "react";
 
 function RekamMedis() {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.data);
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
     const [isiTanggal, setIsiTanggal] = useState("");
     const [isiAnamnesis, setIsiAnamnesis] = useState("");
     const [isiDiagnosis, setIsiDiagnosis] = useState("");
@@ -13,7 +21,6 @@ function RekamMedis() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const postData = {
             tanggalBerobat: isiTanggal,
             anamnesis: isiAnamnesis,
@@ -36,90 +43,127 @@ function RekamMedis() {
                 console.log(err);
             });
     };
-    return (
-        <div className="global">
-            <Navbar />
-            {/*start riwayat penyakit*/}
-            <section className="pasien">
-                {/*start identitas pasien*/}
-                <div id="identitas" className="Identitas">
-                    {/*isi dari js*/}
-                    <div className="head-isi">
-                        <h1>Data Pasien</h1>
-                        <h6>Identitas Pasien</h6>
+ return (
+    <div className="global">
+      <Navbar />
+      {/*start riwayat penyakit*/}
+      <section className="pasien">
+        {/*start identitas pasien*/}
+        <div id="identitas" className="Identitas">
+          {/*isi dari js*/}
+          <div className="head-isi">
+            <h1>Data Pasien</h1>
+            <h6>Identitas Pasien</h6>
+          </div>
+          {state.pasien
+            .filter((pasien) => pasien.id == 1)
+            .map((item, index) => (
+              <div className="id-pasien" key={index}>
+                <div className="isi-id">
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>NIK</h5>
+                      <p>{item.NIK}</p>
                     </div>
-                    <div className="id-pasien">
-                        <div className="isi-id">
-                            <div className="mb-3">
-                                <div className="p-2">
-                                    <h5>NIK</h5>
-                                    <p>00025</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Jenis Kelamin</h5>
-                                    <p>Laki-laki</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Pekerjaan</h5>
-                                    <p>Pedagang</p>
-                                </div>
-                            </div>
-                            <div className="mb-3">
-                                <div className="p-2">
-                                    <h5>Nama Lengkap</h5>
-                                    <p>Joni</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Tanggal lahir</h5>
-                                    <p>20 Januari 2002</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Alergi Obat</h5>
-                                    <p>Paracetamol</p>
-                                </div>
-                            </div>
-                            <div className="mb-3">
-                                <div className="p-2">
-                                    <h5>Umur</h5>
-                                    <p>20</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Alamat</h5>
-                                    <p>Semarang</p>
-                                </div>
-                                <div className="p-2">
-                                    <h5>Konsultasi Pertama</h5>
-                                    <p>30 Agustus 2015</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="p-2">
+                      <h5>Jenis Kelamin</h5>
+                      <p>{item.jenisKelamin}</p>
                     </div>
+                    <div className="p-2">
+                      <h5>Pekerjaan</h5>
+                      <p>{item.pekerjaan}</p>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>Nama Lengkap</h5>
+                      <p>{item.namaLengkap}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Tanggal lahir</h5>
+                      <p>{item.tanggalLahir}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Alergi Obat</h5>
+                      <p>{item.alergiObat[0]}</p>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>Umur</h5>
+                      <p>{item.umur}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Alamat</h5>
+                      <p>{item.alamat}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Konsultasi Pertama</h5>
+                      <p>{item.konsultasiPertama}</p>
+                    </div>
+                  </div>
                 </div>
-                {/*end identitas pasien*/}
+              </div>
+            ))}
+        </div>
+        {/*end identitas pasien*/}
 
-                {/* start akordion riwayat */}
-                <div className="riwayat">
-                    <Accordion defaultActiveKey="0">
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Accordion Item #1</Accordion.Header>
-                            <Accordion.Body>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
-                            </Accordion.Body>
+        {/* start akordion riwayat */}
+        <div className="riwayat">
+          <div className="head-isi">
+            <h1>Riwayat Penyakit</h1>
+            {state.pasien
+              .filter((pasien) => pasien.id == 1)
+              .map((item, index) => (
+                <div>
+                  <div className="akord-riwayat" key={index}>
+                    {/*codingan bootstrap */}
+                    <Accordion defaultActiveKey={index}>
+                      {item.riwayatPenyakit.map((itemm, indexx) => (
+                        <Accordion.Item eventKey={indexx} key={indexx}>
+                          <Accordion.Header>Periksa {indexx + 1}</Accordion.Header>
+                          <Accordion.Body key={indexx}>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Tanggal Periksa</h5>
+                                </li>
+                                <h6>{itemm.tanggalBerobat}</h6>
+                                <li>
+                                  <h5>Anamnesis</h5>
+                                </li>
+                                <h6>{itemm.anamnesis}</h6>
+                                <li>
+                                  <h5>Diagnosa</h5>
+                                </li>
+                                <h6>{itemm.diagnosis}</h6>
+                              </ul>
+                            </div>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Obat</h5>
+                                </li>
+                                <h6>{itemm.obat}</h6>
+                                <li>
+                                  <h5>Catatan</h5>
+                                </li>
+                                <h6>{itemm.catatan}</h6>
+                              </ul>
+                            </div>
+                          </Accordion.Body>
                         </Accordion.Item>
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header>Accordion Item #2</Accordion.Header>
-                            <Accordion.Body>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.
-                            </Accordion.Body>
-                        </Accordion.Item>
+                      ))}
                     </Accordion>
+                    {/*end codingan bootstrap*/}
+                  </div>
                 </div>
-                {/* end akordion riwayat */}
+              ))}
+          </div>
 
+          {/*end riwayat penyakit*/}
+        </div>
+        {/* end akordion riwayat */}
                 {/* start form isi rekam medis */}
                 <div className="rekam">
                     <div className="head-rekam">
