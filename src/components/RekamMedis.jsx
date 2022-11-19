@@ -78,22 +78,58 @@ function RekamMedis() {
 
         {/* start akordion riwayat */}
         <div className="riwayat">
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Accordion Item #1</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Accordion Item #2</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+          <div className="head-isi">
+            <h1>Riwayat Penyakit</h1>
+            {state.pasien
+              .filter((pasien) => pasien.id == 1)
+              .map((item, index) => (
+                <div>
+                  <div className="akord-riwayat" key={index}>
+                    {/*codingan bootstrap */}
+                    <Accordion defaultActiveKey={index}>
+                      {item.riwayatPenyakit.map((itemm, indexx) => (
+                        <Accordion.Item eventKey={indexx} key={indexx}>
+                          <Accordion.Header>Periksa {indexx + 1}</Accordion.Header>
+                          <Accordion.Body key={indexx}>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Tanggal Periksa</h5>
+                                </li>
+                                <h6>{itemm.tanggalBerobat}</h6>
+                                <li>
+                                  <h5>Anamnesis</h5>
+                                </li>
+                                <h6>{itemm.anamnesis}</h6>
+                                <li>
+                                  <h5>Diagnosa</h5>
+                                </li>
+                                <h6>{itemm.diagnosis}</h6>
+                              </ul>
+                            </div>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Obat</h5>
+                                </li>
+                                <h6>{itemm.obat}</h6>
+                                <li>
+                                  <h5>Catatan</h5>
+                                </li>
+                                <h6>{itemm.catatan}</h6>
+                              </ul>
+                            </div>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      ))}
+                    </Accordion>
+                    {/*end codingan bootstrap*/}
+                  </div>
+                </div>
+              ))}
+          </div>
+
+          {/*end riwayat penyakit*/}
         </div>
         {/* end akordion riwayat */}
 
