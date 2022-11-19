@@ -67,7 +67,7 @@ function RiwayatPenyakit() {
                     </div>
                     <div className="p-2">
                       <h5>Tanggal lahir</h5>
-                      <p>{item.namaLengkap}</p>
+                      <p>{item.tanggalLahir}</p>
                     </div>
                     <div className="p-2">
                       <h5>Alergi Obat</h5>
@@ -96,79 +96,55 @@ function RiwayatPenyakit() {
         <div className="riwayat">
           <div className="head-isi">
             <h1>Riwayat Penyakit</h1>
+            {state.pasien
+              .filter((pasien) => pasien.id == 1)
+              .map((item, index) => (
+                <div>
+                  <div className="akord-riwayat" key={index}>
+                    {/*codingan bootstrap */}
+                    <Accordion defaultActiveKey={index}>
+                      {item.riwayatPenyakit.map((itemm, indexx) => (
+                        <Accordion.Item eventKey={indexx} key={indexx}>
+                          <Accordion.Header>Periksa {indexx + 1}</Accordion.Header>
+                          <Accordion.Body key={indexx}>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Tanggal Periksa</h5>
+                                </li>
+                                <h6>{itemm.tanggalBerobat}</h6>
+                                <li>
+                                  <h5>Anamnesis</h5>
+                                </li>
+                                <h6>{itemm.anamnesis}</h6>
+                                <li>
+                                  <h5>Diagnosa</h5>
+                                </li>
+                                <h6>{itemm.diagnosis}</h6>
+                              </ul>
+                            </div>
+                            <div>
+                              <ul>
+                                <li>
+                                  <h5>Obat</h5>
+                                </li>
+                                <h6>{itemm.obat}</h6>
+                                <li>
+                                  <h5>Catatan</h5>
+                                </li>
+                                <h6>{itemm.catatan}</h6>
+                              </ul>
+                            </div>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      ))}
+                    </Accordion>
+                    {/*end codingan bootstrap*/}
+                  </div>
+                </div>
+              ))}
           </div>
-          <div className="akord-riwayat">
-            {/*codingan bootstrap */}
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Accordion Item #1</Accordion.Header>
-                <Accordion.Body>
-                  <div>
-                    <ul>
-                      <li>
-                        <h5>Tanggal Periksa</h5>
-                      </li>
-                      <h6>21 Oktober 2021</h6>
-                      <li>
-                        <h5>Anamnesis</h5>
-                      </li>
-                      <h6>sakit kepala</h6>
-                      <li>
-                        <h5>Diagnosa</h5>
-                      </li>
-                      <h6>migrain</h6>
-                    </ul>
-                  </div>
-                  <div>
-                    <ul>
-                      <li>
-                        <h5>Obat</h5>
-                      </li>
-                      <h6>paramex</h6>
-                      <li>
-                        <h5>Catatan</h5>
-                      </li>
-                      <h6>istirahat total</h6>
-                    </ul>
-                  </div>
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>Accordion Item #2</Accordion.Header>
-                <Accordion.Body>
-                  <div>
-                    <ul>
-                      <li>
-                        <h5>Tanggal Periksa</h5>
-                      </li>
-                      <h6>30 Desember 2021</h6>
-                      <li>
-                        <h5>Anamnesis</h5>
-                      </li>
-                      <h6>Hidung tersumbat</h6>
-                      <li>
-                        <h5>Diagnosa</h5>
-                      </li>
-                      <h6>flu</h6>
-                    </ul>
-                  </div>
-                  <div>
-                    <ul>
-                      <li>
-                        <h5>Obat</h5>
-                      </li>
-                      <h6>OBH combi</h6>
-                      <li>
-                        <h5>Catatan</h5>
-                      </li>
-                      <h6>tidur saja</h6>
-                    </ul>
-                  </div>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-            {/*end codingan bootstrap*/}
-          </div>
+
           {/*end riwayat penyakit*/}
         </div>
       </section>

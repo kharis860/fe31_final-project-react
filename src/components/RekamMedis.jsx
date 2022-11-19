@@ -1,8 +1,16 @@
 import Navbar from "./Navbar";
 import { Accordion } from "react-bootstrap";
 import "../components/RekamMedis.css";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "./Redux/action/dataAction";
+import { useEffect } from "react";
 
 function RekamMedis() {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
   return (
     <div className="global">
       <Navbar />
@@ -15,52 +23,56 @@ function RekamMedis() {
             <h1>Data Pasien</h1>
             <h6>Identitas Pasien</h6>
           </div>
-          <div className="id-pasien">
-            <div className="isi-id">
-              <div className="mb-3">
-                <div className="p-2">
-                  <h5>NIK</h5>
-                  <p>00025</p>
-                </div>
-                <div className="p-2">
-                  <h5>Jenis Kelamin</h5>
-                  <p>Laki-laki</p>
-                </div>
-                <div className="p-2">
-                  <h5>Pekerjaan</h5>
-                  <p>Pedagang</p>
+          {state.pasien
+            .filter((pasien) => pasien.id == 1)
+            .map((item, index) => (
+              <div className="id-pasien" key={index}>
+                <div className="isi-id">
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>NIK</h5>
+                      <p>{item.NIK}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Jenis Kelamin</h5>
+                      <p>{item.jenisKelamin}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Pekerjaan</h5>
+                      <p>{item.pekerjaan}</p>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>Nama Lengkap</h5>
+                      <p>{item.namaLengkap}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Tanggal lahir</h5>
+                      <p>{item.tanggalLahir}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Alergi Obat</h5>
+                      <p>{item.alergiObat[0]}</p>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className="p-2">
+                      <h5>Umur</h5>
+                      <p>{item.umur}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Alamat</h5>
+                      <p>{item.alamat}</p>
+                    </div>
+                    <div className="p-2">
+                      <h5>Konsultasi Pertama</h5>
+                      <p>{item.konsultasiPertama}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mb-3">
-                <div className="p-2">
-                  <h5>Nama Lengkap</h5>
-                  <p>Joni</p>
-                </div>
-                <div className="p-2">
-                  <h5>Tanggal lahir</h5>
-                  <p>20 Januari 2002</p>
-                </div>
-                <div className="p-2">
-                  <h5>Alergi Obat</h5>
-                  <p>Paracetamol</p>
-                </div>
-              </div>
-              <div className="mb-3">
-                <div className="p-2">
-                  <h5>Umur</h5>
-                  <p>20</p>
-                </div>
-                <div className="p-2">
-                  <h5>Alamat</h5>
-                  <p>Semarang</p>
-                </div>
-                <div className="p-2">
-                  <h5>Konsultasi Pertama</h5>
-                  <p>30 Agustus 2015</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
         {/*end identitas pasien*/}
 
