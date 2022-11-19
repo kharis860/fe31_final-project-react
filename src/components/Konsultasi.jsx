@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "./Redux/action/dataAction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { isDocument } from "@testing-library/user-event/dist/utils";
 
 function Konsultasi() {
@@ -14,40 +14,54 @@ function Konsultasi() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
   console.log(state.pasien);
+    const [filteredList, setFilteredList] = useState(state.pasien);
+    // data tidak langsung masuk di bagian ini
+    // console.log(filteredList);
 
-  state.pasien.map((item, index) => console.log(item));
+    const handleSearch = (e) => {
+        const inputSearch = e.target.value;
+        console.log(inputSearch);
 
-  useEffect(() => {
-    dispatch(sendData());
-  }, []);
-  return (
-    <div className="global">
-      <Navbar />
-      {/*start tabel*/}
-      <div className="row mx-3">
-        <div className="container-sm">
-          {/*BARIS*/}
-          <div className="row">
-            <div className="col-md">
-              <h1 className="title">Konsultasi Hari Ini</h1>
-            </div>
-          </div>
-          {/*END BARIS*/}
+        // setFilteredList(e.target.value);
+        let updatedList = [...state.pasien];
 
-          {/*BARIS*/}
-          <div className="row">
-            <div className="col-xl-6">
-              <div className="input-group flex-nowrap">
-                <input type="text" className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
-                <span className="input-group-text" id="icon-search">
-                  {" "}
-                  <i className="material-icons">search</i>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* END BARIS */}
+        updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
+        setFilteredList(updatedList);
+        console.log(filteredList);
+    };
 
+    //   state.pasien.map((item, index) => console.log(item));
+
+    useEffect(() => {
+        dispatch(sendData());
+    }, []);
+    return (
+        <div className="global">
+            <Navbar />
+            {/*start tabel*/}
+            <div className="row mx-3">
+                <div className="container-sm">
+                    {/*BARIS*/}
+                    <div className="row">
+                        <div className="col-md">
+                            <h1 className="title">Konsultasi Hari Ini</h1>
+                        </div>
+                    </div>
+                    {/*END BARIS*/}
+
+                    {/*BARIS*/}
+                    <div className="row">
+                        <div className="col-xl-6">
+                            <div className="input-group flex-nowrap">
+                                <input type="text" onChange={handleSearch} className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
+                                <span className="input-group-text" id="icon-search">
+                                    {" "}
+                                    <i className="material-icons">search</i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {/* END BARIS */}
           {/*BARIS*/}
           <div className="row">
             <div className="col-md table-responsive-md">
@@ -74,7 +88,7 @@ function Konsultasi() {
                   </tr>
                 </thead>
                 <tbody className="table-body">
-                  {state.pasien
+                  {filteredList
                     .filter((pasien) => pasien.konsultasi == false)
                     .map((item, index) => (
                       <tr key={index}>
@@ -97,12 +111,8 @@ function Konsultasi() {
                 </tbody>
               </table>
             </div>
-          </div>
-          {/* END BARIS */}
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Konsultasi;
