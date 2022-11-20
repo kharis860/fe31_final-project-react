@@ -6,11 +6,9 @@ function Sidebar() {
   const tele = useNavigate();
   function teleData() {
     tele("data");
-    console.log("pindah");
   }
   const teleKonsultasi = () => {
     tele("konsultasi");
-    console.log("pindah konsultasi");
   };
   function teleDashboard() {
     tele("/dashboard");

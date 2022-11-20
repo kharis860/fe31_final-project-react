@@ -4,33 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "./Redux/action/dataAction";
 import { useEffect, useState } from "react";
 import { isDocument } from "@testing-library/user-event/dist/utils";
+import { addId } from "./Redux/action/idAction";
 
 function Konsultasi() {
   const tele = useNavigate();
-  function teleRekamMedis() {
+  function teleRekamMedis(index) {
+    dispatch(addId(index));
     tele("/dashboard/rekam");
-    console.log("berhasil");
   }
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
-  console.log(state.pasien);
+  const stateId = useSelector((state) => state.id);
+
   const [filteredList, setFilteredList] = useState(state.pasien);
-  // data tidak langsung masuk di bagian ini
-  // console.log(filteredList);
+  filteredList.map((item, index) => {
+    if (item.konsultasi == false) {
+    }
+  });
 
   const handleSearch = (e) => {
     const inputSearch = e.target.value;
-    console.log(inputSearch);
 
-    // setFilteredList(e.target.value);
     let updatedList = [...state.pasien];
 
     updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
     setFilteredList(updatedList);
-    console.log(filteredList);
   };
-
-  //   state.pasien.map((item, index) => console.log(item));
 
   useEffect(() => {
     dispatch(sendData());
@@ -89,11 +88,11 @@ function Konsultasi() {
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
+
                 <tbody className="table-body">
-                  {filteredList
-                    .filter((pasien) => pasien.konsultasi == false)
-                    .map((item, index) => (
-                      <tr key={index}>
+                  {filteredList.map((item, index) =>
+                    item.konsultasi ? null : (
+                      <tr key={item.id}>
                         <td scope="col">{index + 1}</td>
                         <td scope="col">{item.idPasien}</td>
                         <td scope="col">{item.namaLengkap}</td>
@@ -101,7 +100,7 @@ function Konsultasi() {
                         <td scope="col">{item.umur}</td>
                         <td scope="col">{item.tanggalLahir}</td>
                         <td scope="col">
-                          <button id="submit${i}" onClick={() => teleRekamMedis()} className="btn btn-sm" role="button">
+                          <button id="submit${i}" onClick={() => teleRekamMedis(index)} className="btn btn-sm" role="button">
                             <i className="material-icons" style={{ font_size: "15px" }}>
                               edit
                             </i>
@@ -109,7 +108,8 @@ function Konsultasi() {
                           </button>
                         </td>
                       </tr>
-                    ))}
+                    )
+                  )}
                 </tbody>
               </table>
             </div>

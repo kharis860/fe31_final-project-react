@@ -21,7 +21,9 @@ export function sendData() {
     dispatch(fetch());
 
     const dataPasien = await axios.get("https://6350e03cdfe45bbd55b074ed.mockapi.io/medTechAPI/pasien");
+    // const pick = await axios.get("https://6350e03cdfe45bbd55b074ed.mockapi.io/medTechAPI/pasien/3");
     console.log(dataPasien.data);
+    // console.log(pick.data);
     dispatch(sendDataOk(dataPasien.data));
   };
 }

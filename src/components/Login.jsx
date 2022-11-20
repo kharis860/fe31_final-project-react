@@ -20,7 +20,7 @@ function Login() {
       if (username === dataDokter[i].username && password === dataDokter[i].password) {
         setIsLogin(true);
         tele("/dashboard");
-        // alert("Anda berhasil login");
+
         break;
       } else {
         alert("Masukkan username atau password yang benar");
@@ -35,12 +35,8 @@ function Login() {
     });
   }, []);
 
-  useEffect(() => {
-    // setIsLogin(() => !isLogin);
-  }, [isLogin]);
-  // function teleDashboard() {
-  //     tele("/dashboard");
-  // }
+  useEffect(() => {}, [isLogin]);
+
   return (
     <div id="login-bg">
       <div id="login" onSubmit={handleSubmit}>

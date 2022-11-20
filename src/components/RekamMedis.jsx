@@ -10,40 +10,52 @@ import { useEffect } from "react";
 function RekamMedis() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
+  const stateId = useSelector((state) => state.id);
+
   useEffect(() => {
     dispatch(sendData());
   }, []);
-    const [isiTanggal, setIsiTanggal] = useState("");
-    const [isiAnamnesis, setIsiAnamnesis] = useState("");
-    const [isiDiagnosis, setIsiDiagnosis] = useState("");
-    const [isiObat, setIsiObat] = useState("");
-    const [isiCatatan, setIsiCatatan] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const postData = {
-            tanggalBerobat: isiTanggal,
-            anamnesis: isiAnamnesis,
-            diagnosis: isiDiagnosis,
-            obat: isiObat,
-            catatan: isiCatatan,
-        };
-        // console.log(postData);
-        // kurang nge push ke riwayatPenyakit di API
-        // ambil API nya juga belum
+  const [isiTanggal, setIsiTanggal] = useState("");
+  const [isiAnamnesis, setIsiAnamnesis] = useState("");
+  const [isiDiagnosis, setIsiDiagnosis] = useState("");
+  const [isiObat, setIsiObat] = useState("");
+  const [isiCatatan, setIsiCatatan] = useState("");
+  const [tes, setTes] = useState([]);
+  useEffect(() => {
+    axios.get("https://6350e03cdfe45bbd55b074ed.mockapi.io/medTechAPI/pasien/3").then((element) => {
+      setTes(element.data);
+    });
+  }, []);
 
-        axios
-            // tinggal nambahin id di url
-            .post(`https://6350e03cdfe45bbd55b074ed.mockapi.io/medTechAPI/pasien`, postData)
-
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const postData = {
+      tanggalBerobat: isiTanggal,
+      anamnesis: isiAnamnesis,
+      diagnosis: isiDiagnosis,
+      obat: isiObat,
+      catatan: isiCatatan,
     };
- return (
+
+    axios
+
+      .post(`https://6350e03cdfe45bbd55b074ed.mockapi.io/medTechAPI/pasien/3`, postData)
+
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setIsiTanggal("");
+    setIsiAnamnesis("");
+    setIsiDiagnosis("");
+    setIsiObat("");
+    setIsiCatatan("");
+  };
+  return (
     <div className="global">
       <Navbar />
       {/*start riwayat penyakit*/}
@@ -56,7 +68,7 @@ function RekamMedis() {
             <h6>Identitas Pasien</h6>
           </div>
           {state.pasien
-            .filter((pasien) => pasien.id == 1)
+            .filter((pasien) => pasien.id == stateId.id + 1)
             .map((item, index) => (
               <div className="id-pasien" key={index}>
                 <div className="isi-id">
@@ -113,7 +125,7 @@ function RekamMedis() {
           <div className="head-isi">
             <h1>Riwayat Penyakit</h1>
             {state.pasien
-              .filter((pasien) => pasien.id == 1)
+              .filter((pasien) => pasien.id == stateId.id + 1)
               .map((item, index) => (
                 <div>
                   <div className="akord-riwayat" key={index}>
@@ -164,48 +176,48 @@ function RekamMedis() {
           {/*end riwayat penyakit*/}
         </div>
         {/* end akordion riwayat */}
-                {/* start form isi rekam medis */}
-                <div className="rekam">
-                    <div className="head-rekam">
-                        <h1>Isi Rekam Medis</h1>
-                    </div>
-                    <div className="date">
-                        <form onSubmit={handleSubmit}>
-                            <label>Tanggal periksa</label>
-                            <input type="text" value={isiTanggal} onChange={(e) => setIsiTanggal(e.target.value)} id="isiTanggal" placeholder="19 agustus 2021" />
-                        </form>
-                    </div>
-                    <div className="form-rekam">
-                        <form id="tArea" onSubmit={handleSubmit}>
-                            <div className="grid-container">
-                                <div className="field">
-                                    <label>Anamnesis</label>
-                                    <textarea id="isiAnamnesis" value={isiAnamnesis} onChange={(e) => setIsiAnamnesis(e.target.value)} rows="4" cols="50" placeholder="Masukkan hasil anamnesis..."></textarea>
-                                </div>
-                                <div className="field">
-                                    <label>Diagnosis</label>
-                                    <textarea id="isiDiagnosis" value={isiDiagnosis} onChange={(e) => setIsiDiagnosis(e.target.value)} rows="4" cols="50" placeholder="Masukkan diagnosis..."></textarea>
-                                </div>
-                                <div className="field">
-                                    <label>Obat</label>
-                                    <textarea id="isiObat" value={isiObat} onChange={(e) => setIsiObat(e.target.value)} rows="4" cols="50" placeholder="Masukkan obat..."></textarea>
-                                </div>
-                                <div className="field">
-                                    <label>Catatan</label>
-                                    <textarea id="isiCatatan" value={isiCatatan} onChange={(e) => setIsiCatatan(e.target.value)} rows="4" cols="50" placeholder="Masukkan catatan..."></textarea>
-                                </div>
-                            </div>
-                            <div className="button-rekam">
-                                <button id="submitRiwayat" type="submit">
-                                    Simpan
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+        {/* start form isi rekam medis */}
+        <div className="rekam">
+          <div className="head-rekam">
+            <h1>Isi Rekam Medis</h1>
+          </div>
+          <div className="date">
+            <form onSubmit={handleSubmit}>
+              <label>Tanggal periksa</label>
+              <input type="text" value={isiTanggal} onChange={(e) => setIsiTanggal(e.target.value)} id="isiTanggal" placeholder="19 agustus 2021" />
+            </form>
+          </div>
+          <div className="form-rekam">
+            <form id="tArea" onSubmit={handleSubmit}>
+              <div className="grid-container">
+                <div className="field">
+                  <label>Anamnesis</label>
+                  <textarea id="isiAnamnesis" value={isiAnamnesis} onChange={(e) => setIsiAnamnesis(e.target.value)} rows="4" cols="50" placeholder="Masukkan hasil anamnesis..."></textarea>
                 </div>
-            </section>
+                <div className="field">
+                  <label>Diagnosis</label>
+                  <textarea id="isiDiagnosis" value={isiDiagnosis} onChange={(e) => setIsiDiagnosis(e.target.value)} rows="4" cols="50" placeholder="Masukkan diagnosis..."></textarea>
+                </div>
+                <div className="field">
+                  <label>Obat</label>
+                  <textarea id="isiObat" value={isiObat} onChange={(e) => setIsiObat(e.target.value)} rows="4" cols="50" placeholder="Masukkan obat..."></textarea>
+                </div>
+                <div className="field">
+                  <label>Catatan</label>
+                  <textarea id="isiCatatan" value={isiCatatan} onChange={(e) => setIsiCatatan(e.target.value)} rows="4" cols="50" placeholder="Masukkan catatan..."></textarea>
+                </div>
+              </div>
+              <div className="button-rekam">
+                <button id="submitRiwayat" type="submit">
+                  Simpan
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-    );
+      </section>
+    </div>
+  );
 }
 
 export default RekamMedis;
