@@ -1,7 +1,34 @@
 import Navbar from "./Navbar";
 import "../components/DataPasien.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { sendData } from "./Redux/action/dataAction";
+import { useEffect, useState } from "react";
+import { addId } from "./Redux/action/idAction";
 
 function DataPasien() {
+  const tele = useNavigate();
+  function teleRiwayat(index) {
+    dispatch(addId(index));
+    tele("/dashboard/riwayat");
+  }
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.data);
+  const stateId = useSelector((state) => state.id);
+  const [filteredList, setFilteredList] = useState(state.pasien);
+
+  const handleSearch = (e) => {
+    const inputSearch = e.target.value;
+
+    let updatedList = [...state.pasien];
+
+    updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
+    setFilteredList(updatedList);
+  };
+
+  useEffect(() => {
+    dispatch(sendData());
+  }, []);
   return (
     <>
       <Navbar />
@@ -21,8 +48,8 @@ function DataPasien() {
             {/*BARIS*/}
             <div className="row">
               <div className="col-xl-6">
-                <div className="input-group flex-nowrap" id="search-form">
-                  <input type="text" className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
+                <div className="input-group flex-nowrap">
+                  <input type="text" onChange={handleSearch} className="form-control" placeholder="Cari berdasarkan ID Pasien atau Nama" id="inputSearch" />
                   <span className="input-group-text" id="icon-search">
                     {" "}
                     <i className="material-icons">search</i>
@@ -30,8 +57,7 @@ function DataPasien() {
                 </div>
               </div>
             </div>
-            {/*END BARIS*/}
-
+            {/* END BARIS */}
             {/*BARIS*/}
             <div className="row">
               <div className="col-md table-responsive-md con-table">
@@ -61,32 +87,31 @@ function DataPasien() {
                     </tr>
                   </thead>
                   <tbody className="table-body">
-                    <tr id="row">
-                      <td scope="col">1</td>
-                      <td scope="col">203</td>
-                      <td scope="col">Joni</td>
-                      <td scope="col">Laki-laki</td>
-                      <td scope="col">31 Tahun</td>
-                      <td scope="col">21 Agustus 1990</td>
-                      <td scope="col">Semarang</td>
-                      <td scope="col">
-                        <form action="../Data Pasien/data.html">
-                          <button id="" className="btn btn-sm" role="button">
-                            <i className="material-icons">zoom_in</i>
-                            Lihat
-                          </button>
-                        </form>
-                      </td>
-                    </tr>
+                    {filteredList.map((item, index) =>
+                      item.konsultasi ? (
+                        <tr id="row" key={index}>
+                          <td scope="col">{index + 1}</td>
+                          <td scope="col">{item.idPasien}</td>
+                          <td scope="col">{item.namaLengkap}</td>
+                          <td scope="col">{item.jenisKelamin}</td>
+                          <td scope="col">{item.umur}</td>
+                          <td scope="col">{item.tanggalLahir}</td>
+                          <td scope="col">{item.alamat}</td>
+                          <td scope="col">
+                            <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat(index)}>
+                              <i className="material-icons">zoom_in</i>
+                              Lihat
+                            </button>
+                          </td>
+                        </tr>
+                      ) : null
+                    )}
                   </tbody>
                 </table>
               </div>
             </div>
-            {/*END BARIS*/}
           </div>
         </div>
-        {/*end tabel*/}
-        {/* end kanan */}
       </div>
     </>
   );
