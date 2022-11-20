@@ -4,33 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "./Redux/action/dataAction";
 import { useEffect, useState } from "react";
+import { addId } from "./Redux/action/idAction";
 
 function DataPasien() {
   const tele = useNavigate();
-  function teleRiwayat() {
+  function teleRiwayat(index) {
+    dispatch(addId(index));
     tele("/dashboard/riwayat");
   }
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
   const stateId = useSelector((state) => state.id);
-  console.log(stateId.id);
-  console.log(state.pasien);
   const [filteredList, setFilteredList] = useState(state.pasien);
-  // data tidak langsung masuk di bagian ini
-  console.log(filteredList);
 
   const handleSearch = (e) => {
     const inputSearch = e.target.value;
-    console.log(inputSearch);
 
-    // setFilteredList(e.target.value);
     let updatedList = [...state.pasien];
 
     updatedList = state.pasien.filter((o) => o.idPasien.includes(inputSearch) || o.namaLengkap.includes(inputSearch));
     setFilteredList(updatedList);
-    console.log(filteredList);
   };
-  // state.pasien.map((item, index) => console.log(item));
+
   useEffect(() => {
     dispatch(sendData());
   }, []);
@@ -92,9 +87,8 @@ function DataPasien() {
                     </tr>
                   </thead>
                   <tbody className="table-body">
-                    {filteredList
-                      .filter((pasien) => pasien.konsultasi == true)
-                      .map((item, index) => (
+                    {filteredList.map((item, index) =>
+                      item.konsultasi ? (
                         <tr id="row" key={index}>
                           <td scope="col">{index + 1}</td>
                           <td scope="col">{item.idPasien}</td>
@@ -104,13 +98,14 @@ function DataPasien() {
                           <td scope="col">{item.tanggalLahir}</td>
                           <td scope="col">{item.alamat}</td>
                           <td scope="col">
-                            <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat()}>
+                            <button id="" className="btn btn-sm" role="button" onClick={() => teleRiwayat(index)}>
                               <i className="material-icons">zoom_in</i>
                               Lihat
                             </button>
                           </td>
                         </tr>
-                      ))}
+                      ) : null
+                    )}
                   </tbody>
                 </table>
               </div>

@@ -8,20 +8,14 @@ import Accordion from "react-bootstrap/Accordion";
 function RiwayatPenyakit() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
-  console.log(state.pasien);
-  // console.log(state.pasien[0]);
+  const stateId = useSelector((state) => state.id);
+
   state.pasien
     .filter((pasien) => pasien.id == 1)
     .map((val, index) => {
       console.log(val.riwayatPenyakit);
       val.riwayatPenyakit.map((item, index) => console.log(item));
     });
-  // state.pasien.map((val, index) => {
-  //   console.log(val);
-  //   // console.log(val.riwayatPenyakit);
-  // });
-
-  // const pasien1 = state.pasien.map((item, index) => item);
 
   useEffect(() => {
     dispatch(sendData());
@@ -33,16 +27,12 @@ function RiwayatPenyakit() {
       <section className="pasien">
         {/*start identitas pasien*/}
         <div id="identitas" className="Identitas">
-          {/*isi dari js*/}
           <div className="head-isi">
             <h1>Data Pasien</h1>
             <h6>Identitas Pasien</h6>
-            {/* {state.pasien.map((item, index) => (
-              <h1 key={index}>{item.NIK}</h1>
-            ))} */}
           </div>
           {state.pasien
-            .filter((pasien) => pasien.id == 1)
+            .filter((pasien) => pasien.id == stateId.id + 1)
             .map((item, index) => (
               <div className="id-pasien" key={index}>
                 <div className="isi-id">
@@ -97,7 +87,7 @@ function RiwayatPenyakit() {
           <div className="head-isi">
             <h1>Riwayat Penyakit</h1>
             {state.pasien
-              .filter((pasien) => pasien.id == 1)
+              .filter((pasien) => pasien.id == stateId.id + 1)
               .map((item, index) => (
                 <div>
                   <div className="akord-riwayat" key={index}>
