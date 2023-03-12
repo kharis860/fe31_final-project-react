@@ -1,0 +1,218 @@
+[33mcommit 17691a018ff775c9e8a0bd93ea183d32860d1f74[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 2608efb 2e03ffe
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Sun Nov 20 15:58:06 2022 +0700
+
+    Merge pull request #10 from fellianik/dev
+    
+    finalisasi project ke branch main
+
+[33mcommit 2e03ffe14a58b366df1a2c2f9a71f096b52a1bb9[m
+Merge: 4c506d5 755de3e
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Sun Nov 20 15:37:13 2022 +0700
+
+    Merge pull request #9 from fellianik/kharis-dev
+    
+    mengerjakan redux untuk id agar data yang tampil pada halaman riwayat…
+
+[33mcommit 755de3e24c7d7cda1b60e75c6d5fce1691db47c7[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sun Nov 20 15:34:24 2022 +0700
+
+    mengerjakan redux untuk id agar data yang tampil pada halaman riwayat penyakit dan rekam medis sesuai dengan pilihan user
+
+[33mcommit 4c506d5b662e062bdff204c686fb4dc7d71ed760[m
+Merge: e8a98c4 579db0b
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Sat Nov 19 23:07:32 2022 +0700
+
+    Merge pull request #8 from fellianik/kharis-dev
+    
+    mengoreksi agar fitur search dapat berjalan dengan lancar
+
+[33mcommit 579db0bee49cf009d3b1ebc31fffd1457ad495dc[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sat Nov 19 23:05:23 2022 +0700
+
+    mengoreksi agar fitur search dapat berjalan dengan lancar
+
+[33mcommit e8a98c4356035f8173e8ce11fa73efba45621321[m
+Merge: f14b24b 858b1f5
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Sat Nov 19 22:26:15 2022 +0700
+
+    Merge pull request #7 from fellianik/kharis-dev
+    
+    Kharis dev, membuat reducer untuk id yang nantinya digunakan sebagai placeholder pada halaman data pasien dan konsultasi
+
+[33mcommit 858b1f585bfd8c73e73411fcd47aea8d9034119f[m
+Merge: 5255aff f14b24b
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Sat Nov 19 22:24:23 2022 +0700
+
+    Merge branch 'dev' into kharis-dev
+
+[33mcommit 5255aff7668e1bcade1ca42bcf2faf03d46cc85f[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sat Nov 19 21:42:14 2022 +0700
+
+    membuat reducer untuk id yang nantinya digunakan sebagai placeholder pada halaman data pasien dan konsultasi
+
+[33mcommit f14b24b3261a35ab82c44fda24131eed996c0b45[m
+Merge: 4d377e7 0e45251
+Author: Felliani Kurniawati <75334109+fellianik@users.noreply.github.com>
+Date:   Sat Nov 19 21:39:32 2022 +0700
+
+    Merge pull request #6 from fellianik/felli-dev
+    
+    handle search
+
+[33mcommit 0e45251a48465e0562a86e15cbbd85e8a4431a33[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Sat Nov 19 21:38:20 2022 +0700
+
+    handle search di konsultasi
+
+[33mcommit 0afbb1d93d5e789e1f679f7b2205159ef68ed168[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Sat Nov 19 21:26:47 2022 +0700
+
+    handle search di data Pasien
+
+[33mcommit 4d377e7f83e9ce5e666f70c96f7fc848ce6fcc67[m
+Merge: f478f50 20f1f0b
+Author: Felliani Kurniawati <75334109+fellianik@users.noreply.github.com>
+Date:   Sat Nov 19 21:00:45 2022 +0700
+
+    Merge pull request #5 from fellianik/felli-dev
+    
+    menambahkan post axios untuk konsultasi
+
+[33mcommit 20f1f0b560da250715c2723ccf3af24ef25bf2f0[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Sat Nov 19 20:49:47 2022 +0700
+
+    menambahkan post axios untuk konsultasi
+
+[33mcommit 982abed5fa3593e381b0ea508ccccb7c97f5fe55[m
+Merge: 0310453 f478f50
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sat Nov 19 20:17:52 2022 +0700
+
+    Merge branch 'dev' into kharis-dev
+
+[33mcommit 0310453b3183be0664d5fe1f5d9902d41d512db3[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sat Nov 19 20:16:24 2022 +0700
+
+    memunculkan data pada halaman rekam data pasien secara dinamis berasal dari API
+
+[33mcommit f478f5017671d5b2c9f41d0c40946419e31d95a4[m
+Merge: 767943f c1ba97c
+Author: Felliani Kurniawati <75334109+fellianik@users.noreply.github.com>
+Date:   Sat Nov 19 20:11:57 2022 +0700
+
+    Merge pull request #4 from fellianik/felli-dev
+    
+    revisi login
+
+[33mcommit c1ba97c0e88e67e3e3b676b1fbabc0a59a0d7a3d[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Sat Nov 19 20:04:12 2022 +0700
+
+    revisi kode login
+
+[33mcommit 5d5de9c8fc8266c4d4f3d9a51ed50d16b95c7010[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Sat Nov 19 14:44:25 2022 +0700
+
+    perubahan kode login
+
+[33mcommit 3490df543ad2500c2b57053a46467529e6b54db7[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Sat Nov 19 13:22:46 2022 +0700
+
+    memastikan tampilan riwayat pasien sudah dinamis dari fetch data API
+
+[33mcommit 767943f21f984eb670ee1db0b97b0d8c53003b9b[m
+Merge: 8cf5c50 118db31
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Fri Nov 18 22:44:28 2022 +0700
+
+    Merge pull request #3 from fellianik/kharis-dev
+    
+    melakukan koreksi setelah penggabungan halaman utama dan login
+
+[33mcommit 118db3172eadca9e01a35aae0d57bf02a7c68e41[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Fri Nov 18 22:42:48 2022 +0700
+
+    melakukan koreksi setelah penggabungan halaman utama dan login
+
+[33mcommit 8cf5c50a6a465c655ccd8c74e6f0f513a6c1a744[m
+Merge: 9bd5871 af8827f
+Author: Felliani Kurniawati <75334109+fellianik@users.noreply.github.com>
+Date:   Fri Nov 18 21:04:25 2022 +0700
+
+    Merge pull request #2 from fellianik/felli-dev
+    
+    menambahkan login
+
+[33mcommit af8827fd8b1d9f5e83f162a77448355f7a136052[m
+Merge: 89b547c 9bd5871
+Author: Felliani Kurniawati <75334109+fellianik@users.noreply.github.com>
+Date:   Fri Nov 18 21:04:10 2022 +0700
+
+    Merge branch 'dev' into felli-dev
+
+[33mcommit 89b547ca72bb42fd7b4decf1e039e8a6e53dd87f[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Fri Nov 18 21:01:14 2022 +0700
+
+    delete conflic
+
+[33mcommit 9bd5871ab8ec6ae0446cd04771dc629651cc48ad[m
+Merge: 2608efb 7ec325f
+Author: kharis860 <83742894+kharis860@users.noreply.github.com>
+Date:   Fri Nov 18 20:44:27 2022 +0700
+
+    Merge pull request #1 from fellianik/kharis-dev
+    
+    mengerjakan tampilan halaman data pasien dan konsultasi, lalu menampilkan data dari API
+
+[33mcommit 7ec325f803f89d5ea112c484ff2403d2bdf2be60[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Fri Nov 18 20:42:06 2022 +0700
+
+    mengerjakan tampilan halaman data pasien dan konsultasi, lalu menampilkan datanya secara dinamis mengambil data dari API
+
+[33mcommit 89a84ffed1027b7abbccd31804e3c96849196862[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Fri Nov 18 20:31:47 2022 +0700
+
+    login handle
+
+[33mcommit 5754f44f95372a70da513a8dfbd58f0d11bbfa32[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Fri Nov 18 18:07:43 2022 +0700
+
+    menambahkan login dan handlenya
+
+[33mcommit adeac5b6fa4011cf39b190337b4ddcbb00a8bafb[m
+Author: fellianik <tanakanaomi04@gmail.com>
+Date:   Wed Nov 16 22:10:33 2022 +0700
+
+    perbaikan sedikit
+
+[33mcommit 2608efb75a29174db9a53d3dad51fd11ec42eb27[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Wed Nov 16 21:06:38 2022 +0700
+
+    Menyicil tampilan layout halaman dashboard, data pasien, dan konsultasi beserta routingnya
+
+[33mcommit 239fb44534d58d3502aeb6948a7599b46342f5ec[m
+Author: Kharis <Kharisrahmat686@gmail.com>
+Date:   Tue Nov 15 22:24:16 2022 +0700
+
+    Initialize project using Create React App
